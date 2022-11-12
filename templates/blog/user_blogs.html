@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} Blog | Home {% endblock title %}
+{% block body %}
+{% if object_list %}
+<div class="list-group container-fluid">
+    <h1 class="mx-3 my-2">Your Blogs</h1>
+    <div class="mx-4 w-50">
+        {% for object in object_list %}
+        <div
+            class="list-group-item list-group-item-action mb-2" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{object.title}}</h5>
+                <small></small>
+            </div>
+            <p class="mb-1 ms-1">{{object.content|slice:":200"}}<span class="text-info"><a href="{% url 'blog:detail' object.author.username object.slug %}">...Read More</a></span></p>
+            <div class="d-flex w-100 justify-content-between">
+                <a href="{% url 'blog:delete' user.username object.slug %}" class="link-danger">Delete Post</a>
+                <a href="{% url 'blog:update' user.username object.slug %}" class="link-success me-auto ms-2">Edit Post</a>
+                <small>{{object.publish_datetimestamp|timesince}} ago</small>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- <a href="" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">List group item heading</h5>
+      <small class="text-muted">3 days ago</small>
+    </div>
+    <p class="mb-1">Some placeholder content in a paragraph.</p>
+    <small class="text-muted">And some muted small print.</small>
+  </a>
+  <a href="" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">List group item heading</h5>
+      <small class="text-muted">3 days ago</small>
+    </div>
+    <p class="mb-1">Some placeholder content in a paragraph.</p>
+    <small class="text-muted">And some muted small print.</small>
+  </a> -->
+</div>
+{% endif %}
+{% endblock body %}

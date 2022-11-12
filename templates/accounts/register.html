@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} User Registration {% endblock title %}
+{% block body %}
+<div class="d-flex flex-column">
+    <form action="" method='POST' class="form-control w-50 mx-auto mt-5">
+        {% csrf_token %}
+        <h1>Register</h1>
+        {{form.as_p}}
+        <input type="submit" value='Register' class="btn bg-success text-light">
+    </form>
+</div>
+{% endblock body %}
